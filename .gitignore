@@ -5,6 +5,7 @@ git_pull.sh
 git_push.sh
 
 /// shell for bazel
+bazel-*
 build.sh
 clean.sh
 local_build.sh
