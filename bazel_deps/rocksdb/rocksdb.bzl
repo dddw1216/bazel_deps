@@ -9,7 +9,7 @@ def rocksdb_workspace():
         new_git_repository(
             name = "com_github_facebook_rocksdb",
             remote = "https://github.com/facebook/rocksdb.git",
-            tag = "v7.10.2",
+            tag = "v6.29.5",
             build_file = clean_dep("//bazel_deps/rocksdb:rocksdb.BUILD"),
         )
     if not native.existing_rule("com_github_facebook_zstd"):
@@ -52,5 +52,5 @@ def rocksdb_workspace():
             name = "com_google_googletest",
             remote = "https://github.com/google/googletest",
             tag = "v1.13.0",
-            build_file = clean_dep("//bazel_deps/facebook_rocksdb:googletest.BUILD"),
+            build_file = clean_dep("//bazel_deps/googletest:googletest.BUILD"),
         )

@@ -18,9 +18,11 @@ package(default_visibility = ["//visibility:public"])
 
 config_setting(
     name = "darwin",
-    values = {"cpu": "darwin"},
+    values = {"cpu": "darwin_x86_64"},
     visibility = ["//visibility:public"],
 )
+
+
 
 SOURCES = [
     "db/builder.cc",
@@ -87,7 +89,13 @@ cc_library(
         "-fno-builtin-memcmp",
         "-DLEVELDB_PLATFORM_POSIX=1",
         "-DLEVELDB_ATOMIC_PRESENT",
-    ],
+    ] + select({
+        ":darwin": [
+            "-D__DARWIN_C_SOURCE",
+            "-D_POSIX_C_SOURCE=200809L",
+        ],
+        "//conditions:default": [],
+    }),
     defines = [
         "LEVELDB_PLATFORM_POSIX",
     ] + select({

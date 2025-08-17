@@ -2,6 +2,12 @@ licenses(["notice"])
 
 package(default_visibility = ["//visibility:public"])
 
+config_setting(
+    name = "darwin",
+    values = {"cpu": "darwin_x86_64"},
+    visibility = ["//visibility:public"],
+)
+
 cc_library(
     name = "rocksdb",
     srcs = [
@@ -339,14 +345,20 @@ cc_library(
         "-Wno-missing-field-initializers",
         "-fno-builtin-memcmp",
         "-mpclmul",
-    ],
+    ] + select({
+        ":darwin": [
+            "-D__DARWIN_C_SOURCE",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-faligned-allocation",
+        ],
+        "//conditions:default": [],
+    }),
     defines = [
         "ROCKSDB_FALLOCATE_PRESENT",
         "ROCKSDB_LIB_IO_POSIX",
         "ROCKSDB_PLATFORM_POSIX",
         "ROCKSDB_SUPPORT_THREAD_LOCAL",
         "GFLAGS=gflags",
-        "OS_LINUX",
         "ZSTD",
         "LZ4",
         "HAVE_SSE42",
@@ -356,7 +368,14 @@ cc_library(
         "NDEBUG",
         #"ROCKSDB_MALLOC_USABLE_SIZE",
         #"ROCKSDB_JEMALLOC=1",
-    ],
+    ] + select({
+        ":darwin": [
+            "OS_MACOSX",
+        ],
+        "//conditions:default": [
+            "OS_LINUX",
+        ],
+    }),
     includes = [
         "include",
     ],
