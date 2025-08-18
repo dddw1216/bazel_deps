@@ -364,7 +364,7 @@ cc_library(
         "HAVE_SSE42",
         "ZLIB",
         "SNAPPY",
-        "ROCKSDB_SCHED_GETCPU_PRESENT",
+        #"ROCKSDB_SCHED_GETCPU_PRESENT",
         "NDEBUG",
         #"ROCKSDB_MALLOC_USABLE_SIZE",
         #"ROCKSDB_JEMALLOC=1",
