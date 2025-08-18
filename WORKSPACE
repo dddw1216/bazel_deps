@@ -13,3 +13,6 @@ spdlog_workspace()
 load("//bazel_deps/rocksdb:rocksdb.bzl", "rocksdb_workspace")
 rocksdb_workspace()
 
+load("//bazel_deps/lz4:lz4.bzl", "lz4_workspace")
+lz4_workspace()
+
