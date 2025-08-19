@@ -9,7 +9,7 @@ def rocksdb_workspace():
         new_git_repository(
             name = "com_github_facebook_rocksdb",
             remote = "https://github.com/facebook/rocksdb.git",
-            tag = "v7.10.2",
+            tag = "v10.5.1",
             build_file = clean_dep("//bazel_deps/rocksdb:rocksdb.BUILD"),
         )
     if not native.existing_rule("com_github_facebook_zstd"):

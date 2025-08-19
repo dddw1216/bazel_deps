@@ -407,7 +407,7 @@ genrule(
     cmd = ("sed " +
            "-e 's/@GIT_MOD@/0/g' " +
            "-e 's/@GIT_DATE@/0/g' " +
-           "-e 's/@GIT_TAG@/v7.10.2/g' " +
+           "-e 's/@GIT_TAG@/v10.5.1/g' " +
            "-e 's/@GIT_SHA@/0/g' " +
            "-e 's/@BUILD_DATE@/0/g' " +
            "-e 's/@ROCKSDB_PLUGIN_BUILTINS@//g' " +
